@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.app.drink.scalc.MainActivity"
+    android:id="@+id/RelativeLayout">
+
+<ImageView
+    android:id="@+id/ThemePicture"
+    android:layout_width="21dp"
+    android:layout_height="21dp"
+    style="@style/ImageViewStyle"
+    android:layout_marginTop="14dip"
+    android:layout_marginLeft="169.5dp"
+    />
+    <TextView
+
+        android:id="@+id/subText"
+        android:textSize="36sp"
+        android:layout_below="@id/ThemePicture"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        style="@style/TextViewStyle"
+        android:layout_marginRight="42dp"
+        />
+    <HorizontalScrollView
+        android:layout_marginRight="26dp"
+        android:layout_below="@id/subText"
+        android:id="@+id/MainHor"
+        android:layout_width="match_parent"
+        android:layout_height="102.5dp">
+        <TextView
+            android:layout_marginRight="27dp"
+            android:id="@+id/MainText"
+            style="@style/TextViewStyle"
+            android:textSize="86sp"
+            android:layout_below="@id/subText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </HorizontalScrollView>
+
+
+
+<Button
+    android:id="@+id/cButton"
+    android:layout_below="@id/MainHor"
+    style="@style/BlueButton"
+    android:text="C"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="14dp"
+    />
+<LinearLayout
+    android:id="@+id/lightLinearTop"
+    style="@style/LinearBrown"
+    android:layout_marginTop="8dp"
+    android:layout_marginLeft="12dp"
+    android:layout_toRightOf="@id/cButton"
+    android:layout_below="@id/MainHor"
+
+    android:layout_width="160dp"
+    android:layout_height="74dp">
+    <Button
+        android:id="@+id/btnLeftBracket"
+        style="@style/BlueButton"
+        android:text="("/>
+    <Button
+        android:id="@+id/btnRightBracket"
+        android:layout_marginLeft="12dp"
+        style="@style/BlueButton"
+        android:text=")"
+        />
+
+</LinearLayout>
+    <LinearLayout
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="8dp"
+        style="@style/OrangeLinear"
+        android:id="@+id/MainPanel"
+
+        android:layout_below="@id/MainHor"
+        android:layout_toRightOf="@id/lightLinearTop"
+        android:layout_width="74dp"
+        android:layout_height="332dp">
+
+        <Button
+            android:id="@+id/btnDiv"
+            android:text="÷"
+            style="@style/DarkBlueButton" />
+        <Button
+            android:id="@+id/btnMult"
+            android:layout_marginTop="12dp"
+            android:text="×"
+            style="@style/DarkBlueButton" />
+        <Button
+            android:id="@+id/btnMinus"
+            android:layout_marginTop="12dp"
+            android:text="-"
+            style="@style/DarkBlueButton" />
+        <Button
+            android:id="@+id/btnPlus"
+            android:layout_marginTop="12dp"
+            android:text="+"
+            style="@style/DarkBlueButton" />
+    </LinearLayout>
+    <LinearLayout
+        style="@style/LinearForNumO"
+        android:id="@+id/NumberPanel"
+        android:layout_marginLeft="14dp"
+        android:layout_marginTop="12dp"
+        android:layout_below="@id/cButton"
+
+        android:layout_width="246dp"
+        android:layout_height="246dp">
+
+        <LinearLayout
+            style="@style/LinearForNum"
+            android:layout_width="match_parent"
+            android:layout_height="82dp">
+            <Button
+                android:id="@+id/btnSeven"
+                style="@style/GreyButton"
+                android:text="7"/>
+            <Button
+                android:id="@+id/btnEight"
+                android:layout_marginLeft="12dp"
+                style="@style/GreyButton"
+                android:text="8"/>
+            <Button
+                android:id="@+id/btnNine"
+                android:layout_marginLeft="12dp"
+                style="@style/GreyButton"
+                android:text="9"/>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/LinearForNum"
+            android:layout_width="match_parent"
+            android:layout_height="82dp">
+            <Button
+                android:id="@+id/btnFour"
+                style="@style/GreyButton"
+                android:text="4"/>
+            <Button
+                android:id="@+id/btnFive"
+                android:layout_marginLeft="12dp"
+                style="@style/GreyButton"
+                android:text="5"/>
+            <Button
+                android:id="@+id/btnSix"
+                android:layout_marginLeft="12dp"
+                style="@style/GreyButton"
+                android:text="6"/>
+        </LinearLayout>
+        <LinearLayout
+            style="@style/LinearForNum"
+            android:layout_width="match_parent"
+            android:layout_height="82dp">
+            <Button
+                android:id="@+id/btnOne"
+                style="@style/GreyButton"
+                android:text="1"/>
+            <Button
+                android:id="@+id/btnTwo"
+                android:layout_marginLeft="12dp"
+                style="@style/GreyButton"
+                android:text="2"/>
+            <Button
+                android:id="@+id/btnThree"
+                android:layout_marginLeft="12dp"
+                style="@style/GreyButton"
+                android:text="3"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/ZeroBtn"
+        android:layout_below="@id/NumberPanel"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="14dp"
+        android:text="0"
+        style="@style/GreyButton"/>
+    
+    <LinearLayout
+        style="@style/LinearBrown"
+        android:id="@+id/specPanel"
+
+        android:layout_below="@id/NumberPanel"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_toRightOf="@id/ZeroBtn"
+        android:layout_width="160dp"
+        android:layout_height="74dp">
+
+        <Button
+            android:id="@+id/btnDot"
+            style="@style/BlueButton"
+            android:text=","
+          />
+        <Button
+            android:id="@+id/btnPercent"
+            android:layout_marginLeft="12dp"
+            style="@style/BlueButton"
+            android:text="%"
+            />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/resultBtn"
+        android:layout_below="@id/MainPanel"
+        android:layout_toRightOf="@id/specPanel"
+        android:layout_marginTop="12dp"
+        android:layout_marginLeft="12dp"
+        android:text="="
+        style="@style/DarkBlueButton"/>
+
+
+
+</RelativeLayout>
