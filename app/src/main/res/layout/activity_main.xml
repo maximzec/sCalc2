@@ -7,41 +7,33 @@
     tools:context="com.app.drink.scalc.MainActivity"
     android:id="@+id/RelativeLayout">
 
-<ImageView
-    android:id="@+id/ThemePicture"
-    android:layout_width="21dp"
-    android:layout_height="21dp"
-    style="@style/ImageViewStyle"
-    android:layout_marginTop="14dip"
-    android:layout_marginLeft="169.5dp"
-    />
-    <TextView
+    <ImageView
 
-        android:id="@+id/subText"
-        android:textSize="36sp"
-        android:layout_below="@id/ThemePicture"
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        style="@style/TextViewStyle"
-        android:layout_marginRight="42dp"
-        />
+        android:id="@+id/ThemePicture"
+        style="@style/ImageViewStyle"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:padding="8.5dp" />
+
     <HorizontalScrollView
-        android:layout_marginRight="26dp"
-        android:layout_below="@id/subText"
+        android:layout_below="@id/ThemePicture"
+        android:layout_marginTop="21dp"
         android:id="@+id/MainHor"
         android:layout_width="match_parent"
-        android:layout_height="102.5dp">
-        <TextView
-            android:layout_marginRight="27dp"
-            android:id="@+id/MainText"
-            style="@style/TextViewStyle"
-            android:textSize="86sp"
-            android:layout_below="@id/subText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
-    </HorizontalScrollView>
+        android:layout_height="102.5dp"
+        >
 
+    <TextView
+        android:id="@+id/MainText"
+        style="@style/TextViewStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:textSize="86sp" />
+</HorizontalScrollView>
 
 
 <Button
@@ -59,16 +51,21 @@
     android:layout_marginLeft="12dp"
     android:layout_toRightOf="@id/cButton"
     android:layout_below="@id/MainHor"
-
+    android:gravity="center_vertical"
     android:layout_width="160dp"
     android:layout_height="74dp">
     <Button
+        android:layout_width="64dp"
+        android:layout_marginLeft="8dp"
+        android:layout_height="wrap_content"
         android:id="@+id/btnLeftBracket"
         style="@style/BlueButton"
         android:text="("/>
     <Button
+        android:layout_width="64dp"
+        android:layout_height="wrap_content"
         android:id="@+id/btnRightBracket"
-        android:layout_marginLeft="12dp"
+        android:layout_marginLeft="16dp"
         style="@style/BlueButton"
         android:text=")"
         />
@@ -97,11 +94,11 @@
         <Button
             android:id="@+id/btnMinus"
             android:layout_marginTop="12dp"
-            android:text="-"
+            android:text="−"
             style="@style/DarkBlueButton" />
         <Button
+            android:layout_marginTop="7dp"
             android:id="@+id/btnPlus"
-            android:layout_marginTop="12dp"
             android:text="+"
             style="@style/DarkBlueButton" />
     </LinearLayout>
@@ -116,61 +113,81 @@
         android:layout_height="246dp">
 
         <LinearLayout
+            android:gravity="center_vertical"
+            android:paddingTop="6dp"
             style="@style/LinearForNum"
             android:layout_width="match_parent"
             android:layout_height="82dp">
             <Button
+
+                android:layout_height="wrap_content"
                 android:id="@+id/btnSeven"
                 style="@style/GreyButton"
                 android:text="7"/>
             <Button
+                android:layout_height="wrap_content"
                 android:id="@+id/btnEight"
                 android:layout_marginLeft="12dp"
                 style="@style/GreyButton"
                 android:text="8"/>
             <Button
+                android:layout_height="wrap_content"
                 android:id="@+id/btnNine"
                 android:layout_marginLeft="12dp"
                 style="@style/GreyButton"
                 android:text="9"/>
         </LinearLayout>
         <LinearLayout
+            android:gravity="center_vertical"
+            android:paddingTop="6dp"
             style="@style/LinearForNum"
             android:layout_width="match_parent"
             android:layout_height="82dp">
+
             <Button
+                android:layout_height="wrap_content"
                 android:id="@+id/btnFour"
                 style="@style/GreyButton"
-                android:text="4"/>
+                android:text="4" />
+
             <Button
+                android:layout_height="wrap_content"
                 android:id="@+id/btnFive"
-                android:layout_marginLeft="12dp"
                 style="@style/GreyButton"
-                android:text="5"/>
+                android:layout_marginLeft="12dp"
+                android:text="5" />
+
             <Button
+                android:layout_height="wrap_content"
                 android:id="@+id/btnSix"
-                android:layout_marginLeft="12dp"
                 style="@style/GreyButton"
-                android:text="6"/>
+                android:layout_marginLeft="12dp"
+                android:text="6" />
         </LinearLayout>
         <LinearLayout
+            android:gravity="center_vertical"
             style="@style/LinearForNum"
             android:layout_width="match_parent"
-            android:layout_height="82dp">
+            android:layout_height="82dp"
+            android:paddingTop="6dp">
             <Button
+                android:layout_height="wrap_content"
                 android:id="@+id/btnOne"
                 style="@style/GreyButton"
                 android:text="1"/>
             <Button
+                android:layout_height="wrap_content"
                 android:id="@+id/btnTwo"
                 android:layout_marginLeft="12dp"
                 style="@style/GreyButton"
                 android:text="2"/>
+
             <Button
+                android:layout_height="wrap_content"
                 android:id="@+id/btnThree"
-                android:layout_marginLeft="12dp"
                 style="@style/GreyButton"
-                android:text="3"/>
+                android:layout_marginLeft="12dp"
+                android:text="3" />
         </LinearLayout>
 
     </LinearLayout>

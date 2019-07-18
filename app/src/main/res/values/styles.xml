@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/sf_compact</item>
+        <item name="android:fontFamily">@font/sf_compact_round</item>
         <item name="night_statusBarColor">#000000</item>
         <item name="android:background">#FAFAFA</item>
         <item name="night_background">#000000</item>
@@ -15,6 +15,7 @@
     </style>
 
     <style name="Button" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:gravity">center</item>
         <item name="android:textAlignment">center</item>
         <item name="android:layout_height">74dp</item>
         <item name="android:layout_width">74dp</item>
@@ -68,8 +69,11 @@
     </style>
 
     <style name = "ImageViewStyle">
+        <item name="android:elevation">5dp</item>
         <item name = "android:src">@drawable/ic_luna</item>
         <item name="night_src">@drawable/ic_sun</item>
+        <item name="android:background">@drawable/image_light_theme_top</item>
+        <item name="night_background">@drawable/image_dark_theme_top</item>
     </style>
 
     <style name="TextViewStyle">
@@ -77,5 +81,10 @@
         <item name ="android:textAlignment">gravity</item>
         <item name="android:textColor">#263238</item>
         <item name="night_textColor">#E0E0E0</item>
+    </style>
+
+    <style name = "HorizontalViewStyle">
+        <item name="android:textAlignment">gravity</item>
+        <item name="android:gravity">right|center_vertical</item>
     </style>
 </resources>

@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
  */
 
 class ExpressionParser {
-    private static String operators = "+-×÷";
+    private static String operators = "+−×÷";
     private static String delimiters = "() " + operators;
     public static boolean flag = true;
     private static boolean isDelimiter(String token) {
@@ -37,7 +37,7 @@ class ExpressionParser {
 
     private static int priority(String token) {
         if (token.equals("(")) return 1;
-        if (token.equals("+") || token.equals("-")) return 2;
+        if (token.equals("+") || token.equals("−")) return 2;
         if (token.equals("×") || token.equals("÷")) return 3;
         return 4;
     }
@@ -74,9 +74,9 @@ class ExpressionParser {
                     }
                 }
                 else {
-                    if (curr.equals("-") && (prev.equals("") || (isDelimiter(prev)  && !prev.equals(")")))) {
+                    if (curr.equals("−") && (prev.equals("") || (isDelimiter(prev)  && !prev.equals(")")))) {
                         // унарный минус
-                        curr = "u-";
+                        curr = "u−";
                     }
                     else {
                         while (!stack.isEmpty() && (priority(curr) <= priority(stack.peek()))) {
@@ -115,7 +115,7 @@ class ExpressionParser {
             }
             else if (x.equals("pow10")) stack.push(Math.pow(10, stack.pop()));
             else if (x.equals("+")) stack.push(stack.pop() + stack.pop());
-            else if (x.equals("-")) {
+            else if (x.equals("−")) {
                 Double b = stack.pop(), a = stack.pop();
                 stack.push(a - b);
             }
