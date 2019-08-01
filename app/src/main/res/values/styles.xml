@@ -6,7 +6,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-        <item name="android:fontFamily">@font/sf_compact_round</item>
+        <item name="android:fontFamily">@font/sf_compact</item>
         <item name="night_statusBarColor">#000000</item>
         <item name="android:background">#FAFAFA</item>
         <item name="night_background">#000000</item>
@@ -15,10 +15,8 @@
     </style>
 
     <style name="Button" parent="Widget.AppCompat.Button.Borderless">
-        <item name="android:gravity">center</item>
+        <item name="android:gravity">center|center_vertical</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:layout_height">74dp</item>
-        <item name="android:layout_width">74dp</item>
         <item name="android:textSize">36sp</item>
 
     </style>

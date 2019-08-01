@@ -1,31 +1,33 @@
 package com.app.drink.scalc;
 
 
-import android.animation.AnimatorSet;
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.method.MovementMethod;
+import android.text.method.ScrollingMovementMethod;
 import android.util.SparseArray;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.Window;
-import android.view.animation.AnimationSet;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.asha.nightowllib.NightOwl;
 
 
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 
 import static android.animation.ValueAnimator.*;
 
@@ -33,15 +35,16 @@ public class MainActivity extends AppCompatActivity {
     ///анимации
 
     ValueAnimator animatorTV = ofFloat(86, 43);
-
-
+    HashSet<Character> tokens = new HashSet<>();
+    boolean checkTheme = true;
     ///вспомогательные переменные
-    String theme = "light";
+    String theme;
     int[] btnIdArray = {  R.id.btnPlus , R.id.btnMinus , R.id.btnDiv  ,R.id.btnMult, R.id.ZeroBtn ,
                           R.id.btnOne ,R.id.btnTwo  , R.id.btnThree , R.id.btnFour , R.id.btnFive ,
                           R.id.btnSix ,R.id.btnSeven, R.id.btnEight , R.id.btnNine , R.id.btnPercent ,
-                           R.id.btnDot ,R.id.btnRightBracket , R.id.btnLeftBracket ,R.id.cButton , R.id.resultBtn
+                           R.id.btnDot ,R.id.btnRightBracket , R.id.btnLeftBracket , R.id.resultBtn ,R.id.cButton
                           };
+    SharedPreferences sharedPreferences;
 
     SparseArray<Button> btnArray = new SparseArray<>();
 
@@ -49,12 +52,11 @@ public class MainActivity extends AppCompatActivity {
 
     ///картинка для смены темы и внешний контейнер
     ImageView themePicture;
-    RelativeLayout relativeLayout;
 
     ///отображатели формул
-    private TextView mainText;
+    private RightAlignedEditText mainText;
 
-    HorizontalScrollView horizontalScrollView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,33 +65,48 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         NightOwl.owlAfterCreate(this);
+
         mainText = findViewById(R.id.MainText);
+        mainText.setEnabled(true);
+        mainText.setKeyListener(null);
+        tokens.add('+');
+        tokens.add('÷');
+        tokens.add('(');
+        tokens.add(')');
+        tokens.add('×');
+        tokens.add('−');
 
         for (int i1 : btnIdArray) btnArray.put(i1, findViewById(i1));
 
         for(int i = 0 ; i < btnArray.size() ; i++) btnArray.get(btnArray.keyAt(i)).setOnTouchListener(onTouchListener);
 
+        sharedPreferences = getSharedPreferences("appSettings" , Context.MODE_PRIVATE);
 
-        horizontalScrollView = findViewById(R.id.MainHor);
-        relativeLayout = findViewById(R.id.RelativeLayout);
+        theme = sharedPreferences.getString("Theme" , "light");
+
+
         themePicture = findViewById(R.id.ThemePicture);
-        themePicture.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        themePicture.setOnClickListener(v -> {
 
-                NightOwl.owlNewDress(MainActivity.this);
-                if (theme.equals("light")) {
-                    clearLightStatusBar(MainActivity.this);
-                    theme = "dark";
-                } else {
-                    setLightStatusBar(MainActivity.this);
-                    theme = "light";
-                }
-
+            NightOwl.owlNewDress(MainActivity.this);
+            if (theme.equals("light")) {
+                clearLightStatusBar(MainActivity.this);
+                theme = "dark";
+            } else {
+                setLightStatusBar(MainActivity.this);
+                theme = "light";
             }
-        });
-        horizontalScrollView.setHorizontalScrollBarEnabled(false);
 
+        });
+
+
+        if(checkTheme)
+        {
+            if(theme.equals("dark"))
+            {
+                themePicture.performClick();
+            }
+        }
     }
 
 
@@ -99,7 +116,13 @@ public class MainActivity extends AppCompatActivity {
         NightOwl.owlResume(this);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("Theme" , theme);
+        editor.apply();
+        super.onDestroy();
+    }
 
     public static void setLightStatusBar(Activity activity) {
 
@@ -128,20 +151,6 @@ public class MainActivity extends AppCompatActivity {
         return btnArray.get(id);
     }
 
-    private void changeTextSize(final TextView tv) {
-
-        animatorTV.addUpdateListener(new AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                tv.setTextSize((Float) animation.getAnimatedValue());
-            }
-        });
-        if (tv.getText().length() == 7) {
-            animatorTV.start();
-
-        }
-    }
-
 
     private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
 
@@ -149,9 +158,8 @@ public class MainActivity extends AppCompatActivity {
         @SuppressLint("ClickableViewAccessibility")
         @Override
         public boolean onTouch(View v, MotionEvent e) {
-            String s = (String) mainText.getText();
+            String s = "" + mainText.getText();
             Button buttonClicked = getButtonbyId(v.getId());
-
             switch (e.getAction())
             {
 
@@ -160,49 +168,89 @@ public class MainActivity extends AppCompatActivity {
 
                  case MotionEvent.ACTION_DOWN:
                      {
+
                     AnimationFunctions.AnimateDownButton(buttonClicked);
                     switch (buttonClicked.getId()) {
 
 
-                        case R.id.cButton:
-                            {
-                                s = "";
-                                mainText.setTextSize(86);
-                                mainText.setText(s);
-                                break;
-                            }
+
 
                         case R.id.resultBtn:
                             {
 
                                 if (s.length() != 0) {
-                                    double result = ExpressionParser.calc(ExpressionParser.parse((String) mainText.getText()));
+                                    if(s.contains(","))
+                                    {
+                                        s = s.replace(',', '.');
+                                    }
+                                    double result = ExpressionParser.calc(ExpressionParser.parse(s));
                                     double fractionPart = result % Math.floor(result);
                                     if (fractionPart == 0) {
                                         mainText.setText(String.format("%.0f", result));
                                     } else {
-                                        mainText.setText(String.valueOf(result));
+                                        s = String.valueOf(result);
+                                        s = s.replace('.' , ',');
+                                        mainText.setText(s);
                                     }
 
                                 } else {
                                     s += '0';
                                 }
+                                s = s.replace('.' , ',');
                                 break;
                             }
+                        case R.id.btnPercent:
+                        {
+                            if(s.length()!= 0)
+                            {
+                                s = s.replace(',' , '.');
+                                double result = ExpressionParser.calc(ExpressionParser.parse(s)) / 100;
+                                double fractionPart = result % Math.floor(result);
+                                if(fractionPart == 0) mainText.setText(String.format("%0.f", result));
+                                else
+                                {
+                                    s = String.valueOf(result);
+                                    s = s.replace('.' , ',');
+                                    mainText.setText(s);
+
+                                }
+
+                            }
+                            break;
+                        }
 
                         default:
                             {
-                                s += buttonClicked.getText();
-                                mainText.setText(s);
+                                if(buttonClicked.getId() != R.id.cButton) {
+                                        s+= buttonClicked.getText();
+                                        s = checkString(s);
+                                        mainText.setText(s);
+                                }
                                 break;
                             }
                     }
-                    changeTextSize(mainText);
+
                     break;
                 }
 
 
                 case MotionEvent.ACTION_UP: {
+                {
+                    if(buttonClicked.getId() == R.id.cButton) {
+                        if(e.getEventTime() - e.getDownTime() > 1000) {
+                            s = "";
+                            mainText.setTextSize(86);
+                            mainText.setText(s);
+
+                        } else
+                        {
+                            if(s.length()!=0) {
+                                s = s.substring(0, s.length() - 1);
+                                mainText.setText(s);
+                            }
+                        }
+                    }
+                }
                     AnimationFunctions.AnimateUpButton(buttonClicked);
                     break;
                 }
@@ -213,4 +261,18 @@ public class MainActivity extends AppCompatActivity {
 
 
     };
+
+
+    private String checkString(String s)
+    {
+        if(s.length() >= 2)
+        {
+            if(tokens.contains(s.charAt(s.length()-1)) && tokens.contains(s.charAt(s.length()-2)))
+            {
+                s = s.substring(0, s.length() - 2 ) + s.substring(s.length()-1);
+            }
+        }
+        return s;
+    }
+
 }
