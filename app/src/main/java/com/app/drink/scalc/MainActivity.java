@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     ///анимации
 
     ValueAnimator animatorTV = ofFloat(86, 43);
-    HashSet<Character> tokens = new HashSet<>();
+    StringValidator stringValidator = new StringValidator();
     boolean checkTheme = true;
     ///вспомогательные переменные
     String theme;
@@ -69,12 +69,7 @@ public class MainActivity extends AppCompatActivity {
         mainText = findViewById(R.id.MainText);
         mainText.setEnabled(true);
         mainText.setKeyListener(null);
-        tokens.add('+');
-        tokens.add('÷');
-        tokens.add('(');
-        tokens.add(')');
-        tokens.add('×');
-        tokens.add('−');
+
 
         for (int i1 : btnIdArray) btnArray.put(i1, findViewById(i1));
 
@@ -91,15 +86,17 @@ public class MainActivity extends AppCompatActivity {
             NightOwl.owlNewDress(MainActivity.this);
             if (theme.equals("light")) {
                 clearLightStatusBar(MainActivity.this);
+                mainText.setHintTextColor(Color.parseColor("#E0E0E0"));
                 theme = "dark";
             } else {
                 setLightStatusBar(MainActivity.this);
+                mainText.setHintTextColor(Color.parseColor("#263238"));
                 theme = "light";
             }
 
         });
 
-
+        /*
         if(checkTheme)
         {
             if(theme.equals("dark"))
@@ -107,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 themePicture.performClick();
             }
         }
+        */
     }
 
 
@@ -219,14 +217,51 @@ public class MainActivity extends AppCompatActivity {
                             break;
                         }
 
+                        case R.id.btnLeftBracket:
+                        {
+                            if(stringValidator.isLeftBracketAvaible(s))
+                            {
+                                s+=buttonClicked.getText();
+                                mainText.setText(s);
+                            }
+                            break;
+                        }
+
+                        case R.id.btnRightBracket:
+                        {
+                            if(stringValidator.isRightBracketAvaible(s))
+                            {
+                                s+=buttonClicked.getText();
+                                mainText.setText(s);
+                            }
+                            break;
+                        }
+                        case R.id.btnDot:
+                        {
+                            if(s.length()!=0)
+                            {
+                                s+=buttonClicked.getText();
+                                if(s.charAt(s.length()-1) == ',') s = stringValidator.checkStringByDot(s);
+                                mainText.setText(s);
+                            }
+                            else {
+                                s+='0';
+                                s+=',';
+                                mainText.setText(s);
+                            }
+                            break;
+                        }
+
                         default:
                             {
                                 if(buttonClicked.getId() != R.id.cButton) {
-                                        s+= buttonClicked.getText();
-                                        s = checkString(s);
-                                        mainText.setText(s);
+                                    s += buttonClicked.getText();
+                                    if(stringValidator.getActionTokens().contains(s.charAt(s.length()-1))) s = stringValidator.checkStringByActions(s);
+                                    mainText.setText(s);
+
                                 }
                                 break;
+
                             }
                     }
 
@@ -263,16 +298,5 @@ public class MainActivity extends AppCompatActivity {
     };
 
 
-    private String checkString(String s)
-    {
-        if(s.length() >= 2)
-        {
-            if(tokens.contains(s.charAt(s.length()-1)) && tokens.contains(s.charAt(s.length()-2)))
-            {
-                s = s.substring(0, s.length() - 2 ) + s.substring(s.length()-1);
-            }
-        }
-        return s;
-    }
 
 }

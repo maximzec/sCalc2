@@ -22,21 +22,24 @@
 
 
     <com.app.drink.scalc.RightAlignedEditText
-        android:inputType="text"
         android:id="@+id/MainText"
         style="@style/TextViewStyle"
         android:layout_width="match_parent"
-        android:layout_height="98dp"
-        android:maxLines="1"
-        android:scrollHorizontally="true"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:background="@android:color/transparent"
-        android:textSize="86sp"
+        android:hint="0"
+        android:inputType="text"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
         android:textAlignment="textEnd"
+        android:textColorHint="#263238"
+        android:textSize="86sp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
 
