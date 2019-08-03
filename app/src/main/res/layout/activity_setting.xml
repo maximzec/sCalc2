@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".settingActivity">
+
+
+    <TextView
+        android:id="@+id/textView"
+        style="@style/TextViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Выберите\nцветовое оформление:"
+        android:textAlignment="center"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="H,270:77"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.109375"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259375"
+        app:layout_constraintWidth_percent="0.7694" />
+
+    <View
+        style="@style/ViewPickerLightStyle"
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintDimensionRatio="H,166:91"
+        app:layout_constraintHeight_percent="0.1421875"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintWidth_percent="0.461" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_luna"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHeight_percent="0.0328125"
+
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:layout_constraintWidth_percent="0.0583" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="14dp"
+        android:background="@android:color/transparent"
+        android:text="Лунный свет"
+        android:textColor="#82B1FF"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        app:layout_constraintDimensionRatio="H,29:6"
+        app:layout_constraintWidth_percent="0.322"
+        app:layout_constraintHeight_percent="0.0375"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+
+
+    <View
+        android:id="@+id/view6"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        style="@style/ViewPickerDarkStyle"
+        app:layout_constraintDimensionRatio="H,166:91"
+        app:layout_constraintHeight_percent="0.1421875"
+        app:layout_constraintStart_toEndOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintWidth_percent="0.461" />
+
+
+    <ImageView
+        style="@style/DarkBackground"
+        android:id="@+id/imageView2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_sun"
+        app:layout_constraintDimensionRatio="H,1:1"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintHeight_percent="0.0328125"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/view6"
+        app:layout_constraintTop_toTopOf="@+id/view6"
+        app:layout_constraintWidth_percent="0.0583" />
+
+
+    <TextView
+        style="@style/DarkBackground"
+        android:layout_width="145dp"
+        android:layout_height="24dp"
+        android:layout_marginTop="14dp"
+        android:text="Солнечная тень"
+        android:textAlignment="center"
+        android:textColor="#FF9800"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintEnd_toEndOf="@+id/view6"
+        app:layout_constraintStart_toStartOf="@+id/view6"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+
+    <View
+        style="@style/DividerStyle"
+        android:id="@+id/view7"
+        android:layout_width="0dp"
+        android:layout_height="0.5dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintWidth_percent="0.92" />
+
+    <TextView
+        style="@style/TextViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        app:layout_constraintDimensionRatio="H,41:9"
+        app:layout_constraintWidth_percent="0.7972"
+        app:layout_constraintHeight_percent="0.0984375"
+        android:text="Впоследствии вы сможете изменить\nоформление нажав на кнопку\nв верхней части экрана."
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view7" />
+
+
+    <Button
+        android:id="@+id/buttonGo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginBottom="28dp"
+        android:text="Начать работу"
+        android:textAllCaps="false"
+        style="@style/ButtonPickerStyle"
+        android:elevation="10dp"
+        android:textSize="18sp"
+        app:layout_constraintDimensionRatio="H,80:21"
+        app:layout_constraintWidth_percent="0.44"
+        app:layout_constraintHeight_percent="0.065625"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

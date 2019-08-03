@@ -85,4 +85,37 @@
         <item name="android:textAlignment">gravity</item>
         <item name="android:gravity">right|center_vertical</item>
     </style>
+
+
+
+
+
+
+    <style name="DividerStyle">
+        <item name="android:background">#33000000</item>
+        <item name ="night_background">#65FFFFFF</item>
+    </style>
+
+    <style name="ViewPickerLightStyle">
+        <item name="android:background">@drawable/oval_view_light</item>
+        <item name="night_background">@drawable/oval_view_light_d</item>
+    </style>
+
+    <style name="ViewPickerDarkStyle">
+        <item name="android:background">@drawable/oval_view_dark_l</item>
+        <item name="night_background">@drawable/oval_view_dark</item>
+    </style>
+
+
+    <style name="ButtonPickerStyle">
+        <item name="android:background">@drawable/rect_white_21_dp</item>
+        <item name="night_background">@drawable/rect_dark_21_dp</item>
+        <item name="android:textColor">#212121</item>
+        <item name="night_textColor">#E0E0E0</item>
+    </style>
+
+    <style name="DarkBackground">
+        <item name="android:background">#FAFAFA</item>
+        <item name="night_background">#1D0D01</item>
+    </style>
 </resources>

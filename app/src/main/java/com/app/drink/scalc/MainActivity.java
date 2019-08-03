@@ -21,6 +21,7 @@ import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.asha.nightowllib.NightOwl;
 
@@ -181,14 +182,20 @@ public class MainActivity extends AppCompatActivity {
                                     {
                                         s = s.replace(',', '.');
                                     }
-                                    double result = ExpressionParser.calc(ExpressionParser.parse(s));
-                                    double fractionPart = result % Math.floor(result);
-                                    if (fractionPart == 0) {
-                                        mainText.setText(String.format("%.0f", result));
-                                    } else {
-                                        s = String.valueOf(result);
-                                        s = s.replace('.' , ',');
-                                        mainText.setText(s);
+                                    try {
+                                        double result = ExpressionParser.calc(ExpressionParser.parse(s));
+                                        double fractionPart = result % Math.floor(result);
+                                        if (fractionPart == 0) {
+                                            mainText.setText(String.format("%.0f", result));
+                                        } else {
+                                            s = String.valueOf(result);
+                                            s = s.replace('.', ',');
+                                            mainText.setText(s);
+                                        }
+                                    }catch (Exception el)
+                                    {
+                                        Toast toast = Toast.makeText(getApplicationContext() , "Ошибка в вашем выражении" , Toast.LENGTH_SHORT);
+                                        toast.show();
                                     }
 
                                 } else {
@@ -202,16 +209,23 @@ public class MainActivity extends AppCompatActivity {
                             if(s.length()!= 0)
                             {
                                 s = s.replace(',' , '.');
-                                double result = ExpressionParser.calc(ExpressionParser.parse(s)) / 100;
-                                double fractionPart = result % Math.floor(result);
-                                if(fractionPart == 0) mainText.setText(String.format("%0.f", result));
-                                else
-                                {
-                                    s = String.valueOf(result);
-                                    s = s.replace('.' , ',');
-                                    mainText.setText(s);
+                                try {
+                                    double result = ExpressionParser.calc(ExpressionParser.parse(s)) / 100;
+                                    double fractionPart = result % Math.floor(result);
+                                    if(fractionPart == 0) mainText.setText(String.format("%0.f", result));
+                                    else
+                                    {
+                                        s = String.valueOf(result);
+                                        s = s.replace('.' , ',');
+                                        mainText.setText(s);
 
+                                    }
+                                }catch(Exception exception)
+                                {
+                                    Toast toast = Toast.makeText(getApplicationContext() , "Ошибка в вашем выражении" , Toast.LENGTH_SHORT);
+                                    toast.show();
                                 }
+
 
                             }
                             break;
@@ -256,7 +270,14 @@ public class MainActivity extends AppCompatActivity {
                             {
                                 if(buttonClicked.getId() != R.id.cButton) {
                                     s += buttonClicked.getText();
-                                    if(stringValidator.getActionTokens().contains(s.charAt(s.length()-1))) s = stringValidator.checkStringByActions(s);
+                                    if(stringValidator.getActionTokens().contains(s.charAt(s.length()-1))) {
+                                        if (s.length() == 1)
+                                        {
+                                            s = "0";
+                                            s+=buttonClicked.getText();
+                                        }
+                                            s = stringValidator.checkStringByActions(s);
+                                    }
                                     mainText.setText(s);
 
                                 }
@@ -279,10 +300,9 @@ public class MainActivity extends AppCompatActivity {
 
                         } else
                         {
-                            if(s.length()!=0) {
-                                s = s.substring(0, s.length() - 1);
-                                mainText.setText(s);
-                            }
+                            if(s.length()!=0)
+                            {s = s.substring(0, s.length() - 1);
+                            mainText.setText(s);}
                         }
                     }
                 }
