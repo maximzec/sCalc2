@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.asha.nightowllib.NightOwl;
 
@@ -20,7 +21,6 @@ public class settingActivity extends AppCompatActivity {
     String theme = "light";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        NightOwl.builder().defaultMode(0).create();
         NightOwl.owlBeforeCreate(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
@@ -52,7 +52,7 @@ public class settingActivity extends AppCompatActivity {
         });
 
         buttonGo.setOnClickListener(v -> {
-            startActivity(new Intent(settingActivity.this , MainActivity.class));
+            startActivity(new Intent(settingActivity.this, MainActivity.class));
             finish();
         });
     }

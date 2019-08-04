@@ -61,7 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        NightOwl.builder().defaultMode(0).create();
         NightOwl.owlBeforeCreate(this);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -77,8 +76,9 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0 ; i < btnArray.size() ; i++) btnArray.get(btnArray.keyAt(i)).setOnTouchListener(onTouchListener);
 
         sharedPreferences = getSharedPreferences("appSettings" , Context.MODE_PRIVATE);
-
-        theme = sharedPreferences.getString("Theme" , "light");
+        int mode = sharedPreferences.getInt("mode" , 0);
+        if(mode == 0) theme = "light";
+        else theme = "dark";
 
 
         themePicture = findViewById(R.id.ThemePicture);
@@ -97,15 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
         });
 
-        /*
-        if(checkTheme)
-        {
-            if(theme.equals("dark"))
-            {
-                themePicture.performClick();
-            }
-        }
-        */
     }
 
 
@@ -118,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Theme" , theme);
+        editor.putInt("mode" , NightOwl.owlCurrentMode());
         editor.apply();
         super.onDestroy();
     }
@@ -316,6 +307,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     };
+
 
 
 
