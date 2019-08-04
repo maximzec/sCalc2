@@ -78,7 +78,12 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("appSettings" , Context.MODE_PRIVATE);
         int mode = sharedPreferences.getInt("mode" , 0);
         if(mode == 0) theme = "light";
-        else theme = "dark";
+        else
+        {
+            theme = "dark";
+            mainText.setHintTextColor(Color.parseColor("#E0E0E0"));
+
+        }
 
 
         themePicture = findViewById(R.id.ThemePicture);

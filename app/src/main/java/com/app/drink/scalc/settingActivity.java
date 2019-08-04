@@ -67,9 +67,7 @@ public class settingActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("Theme" , theme);
-        editor.apply();
+
     }
 
     public static void setLightStatusBar(Activity activity) {
